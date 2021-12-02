@@ -34,3 +34,6 @@ The updated blockchain is now being broadcast to all the nodes (banks) in the ne
 the blockchain of all the nodes with the new blockchain along with the added block.
 If a new bank wants to get integrated to the blockchain, then an add node module is used to add the node to
 the blockchain network.
+
+## Retrieving details from Blockchain
+

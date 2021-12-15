@@ -126,13 +126,23 @@ blockchain=BlockChain()
 ### Mining the new block
 @app.route('/mine_block', methods = ['GET'])
 def mine_block():
+    receiver_data = request.get_json()
+    print(receiver_data,"receiver")
     previous_block = blockchain.get_previous_block()
     previous_proof = previous_block['proof']
     proof = blockchain.proof_of_work(previous_proof)
     previous_hash = blockchain.hash(previous_block)
-    blockchain.add_transaction(sender = node_address, receiver = 'GIM', amount = 1)
+    #receiver_data = collection.insert_one(data)
+    print("receiver_data",receiver_data)
+    receiver_data={"name": " Sudarshanam",
+ "aadhar": "2678789012344567",
+ "pan": "234123456",
+  "address": "123",
+   "phone": "7259645662"}
+    blockchain.add_transaction(name=receiver_data['name'],aadhar=receiver_data['aadhar'],pan=receiver_data['pan'],
+                               address=receiver_data['address'],phone=receiver_data['phone'])
     block = blockchain.create_block(proof, previous_hash)
-    response = {'message': 'Congratulations, you just mined a block!',
+    response = {'message': 'Added the block!',
                 'index': block['index'],
                 'timestamp': block['timestamp'],
                 'proof': block['proof'],

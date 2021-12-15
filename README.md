@@ -49,7 +49,7 @@ Details are retrieved based on the unique key identifier in the data.
 
 ## Saving the transactions in Pymongo
 
-```def get_database():
+`def get_database():
 
     # Provide the mongodb atlas url to connect python to mongodb using pymongo
     myclient = pymongo.MongoClient("mongodb://localhost:5011/")
@@ -63,6 +63,31 @@ def saveDB(name,aadhar,pan,address,phone):
     mycol = mydb["customers"]
     mydict = {"name":name , "address":address,"phone":phone,"aadhar":aadhar,"pan":pan}
     x = mycol.insert_one(mydict)
-    print(x)```
+    print(x)'
     
-
+## Adding Transaction block
+```@app.route('/mine_block', methods = ['GET'])
+def mine_block():
+    receiver_data = request.get_json()
+    print(receiver_data,"receiver")
+    previous_block = blockchain.get_previous_block()
+    previous_proof = previous_block['proof']
+    proof = blockchain.proof_of_work(previous_proof)
+    previous_hash = blockchain.hash(previous_block)
+    #receiver_data = collection.insert_one(data)
+    print("receiver_data",receiver_data)
+    receiver_data={"name": " Sudarshanam",
+ "aadhar": "2678789012344567",
+ "pan": "234123456",
+  "address": "123",
+   "phone": "7259645662"}
+    blockchain.add_transaction(name=receiver_data['name'],aadhar=receiver_data['aadhar'],pan=receiver_data['pan'],
+                               address=receiver_data['address'],phone=receiver_data['phone'])
+    block = blockchain.create_block(proof, previous_hash)
+    response = {'message': 'Added the block!',
+                'index': block['index'],
+                'timestamp': block['timestamp'],
+                'proof': block['proof'],
+                'previous_hash': block['previous_hash'],
+                'transactions': block['transactions']}
+    return jsonify(response), 200```

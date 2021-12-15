@@ -63,7 +63,7 @@ def saveDB(name,aadhar,pan,address,phone):
     mycol = mydb["customers"]
     mydict = {"name":name , "address":address,"phone":phone,"aadhar":aadhar,"pan":pan}
     x = mycol.insert_one(mydict)
-    print(x)'
+    print(x)`
     
 ## Adding Transaction block
 ```@app.route('/mine_block', methods = ['GET'])

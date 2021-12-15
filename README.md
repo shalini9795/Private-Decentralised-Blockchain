@@ -1,10 +1,26 @@
 # Tech Stack Used
 
-UI is made in Streamlit - UI.py
+UI is made in Streamlit - main.py
+
 Persistance is done in mongodb using the Pymongo package
+
 The APIs are created using Flask
 
+```def get_database():
 
+    # Provide the mongodb atlas url to connect python to mongodb using pymongo
+    myclient = pymongo.MongoClient("mongodb://localhost:5011/")
+
+    mydb = myclient["KYCDatabase"]
+    print("database created")
+    return mydb
+
+def saveDB(name,aadhar,pan,address,phone):
+    mydb=get_database()
+    mycol = mydb["customers"]
+    mydict = {"name":name , "address":address,"phone":phone,"aadhar":aadhar,"pan":pan}
+    x = mycol.insert_one(mydict)
+    print(x)```
 
 
 # Private-Decentralised-Blockchain

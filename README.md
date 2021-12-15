@@ -1,3 +1,12 @@
+# Tech Stack Used
+
+UI is made in Streamlit - UI.py
+Persistance is done in mongodb using the Pymongo package
+The APIs are created using Flask
+
+
+
+
 # Private-Decentralised-Blockchain
 
 Blockchain technology is used for a de centralized network enabled verification of KYC documents. 
@@ -36,4 +45,6 @@ If a new bank wants to get integrated to the blockchain, then an add node module
 the blockchain network.
 
 ## Retrieving details from Blockchain
+Details are retrieved based on the unique key identifier in the data.
+
 

@@ -6,22 +6,6 @@ Persistance is done in mongodb using the Pymongo package
 
 The APIs are created using Flask
 
-```def get_database():
-
-    # Provide the mongodb atlas url to connect python to mongodb using pymongo
-    myclient = pymongo.MongoClient("mongodb://localhost:5011/")
-
-    mydb = myclient["KYCDatabase"]
-    print("database created")
-    return mydb
-
-def saveDB(name,aadhar,pan,address,phone):
-    mydb=get_database()
-    mycol = mydb["customers"]
-    mydict = {"name":name , "address":address,"phone":phone,"aadhar":aadhar,"pan":pan}
-    x = mycol.insert_one(mydict)
-    print(x)```
-
 
 # Private-Decentralised-Blockchain
 
@@ -63,4 +47,22 @@ the blockchain network.
 ## Retrieving details from Blockchain
 Details are retrieved based on the unique key identifier in the data.
 
+## Saving the transactions in Pymongo
+
+```def get_database():
+
+    # Provide the mongodb atlas url to connect python to mongodb using pymongo
+    myclient = pymongo.MongoClient("mongodb://localhost:5011/")
+
+    mydb = myclient["KYCDatabase"]
+    print("database created")
+    return mydb
+
+def saveDB(name,aadhar,pan,address,phone):
+    mydb=get_database()
+    mycol = mydb["customers"]
+    mydict = {"name":name , "address":address,"phone":phone,"aadhar":aadhar,"pan":pan}
+    x = mycol.insert_one(mydict)
+    print(x)```
+    
 
